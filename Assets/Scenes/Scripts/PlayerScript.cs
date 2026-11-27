@@ -7,12 +7,10 @@ public class PlayerScript : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private int score;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        CanvasManager.Instance.UpdateScore(score);
+        CanvasManager.Instance.UpdateScore(SaveManager.Instace.Score);
     }
 
     void Update()
@@ -27,13 +25,15 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+            SaveManager.Instace.Deaths++;
+            SaveManager.Instace.SaveGame();
             print("Game Over");
         }
 
         if (collision.gameObject.CompareTag("Goal"))
         {
-            score++;
-            CanvasManager.Instance.UpdateScore(score);
+            SaveManager.Instace.Score++;
+            CanvasManager.Instance.UpdateScore(SaveManager.Instace.Score);
         }
     }
 }
