@@ -31,6 +31,6 @@ public class ObstacleManager : MonoBehaviour
 
     Vector3 SpawObstaclePos()
     {
-        return new Vector3(obstacleSpaw.position.x, Random.Range(-4f, 3.4f), 0);
+        return new Vector3(obstacleSpaw.position.x, Random.Range(-2.5f, 2.75f), 3);
     }
 }
