@@ -1129,8 +1129,8 @@ GameObject:
   - component: {fileID: 1591241480}
   - component: {fileID: 1591241479}
   - component: {fileID: 1591241478}
-  - component: {fileID: 1591241482}
   - component: {fileID: 1591241483}
+  - component: {fileID: 1591241482}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1289,6 +1289,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
   forceJump: 6
+  rotationSpeedUp: 10
+  rotationSpeedDown: 4
+  maxAngleZ: 35
+  minAngleZ: -60
 --- !u!95 &1591241483
 Animator:
   serializedVersion: 7

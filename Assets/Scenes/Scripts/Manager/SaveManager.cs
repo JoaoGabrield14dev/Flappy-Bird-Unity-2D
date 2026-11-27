@@ -29,4 +29,13 @@ public class SaveManager : MonoBehaviour
         score = PlayerPrefs.GetInt("score");
         deaths = PlayerPrefs.GetInt("deaths");
     }
+
+    public void CheckMaxScore(int score_)
+    {
+        if (score_ > score)
+        {
+            print("Passou o recorde!");
+            score = score_;
+        }
+    }
 }

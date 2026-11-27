@@ -14,16 +14,18 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float minAngleZ;
 
     private Rigidbody2D rb;
-    private Quaternion MaxAngle;
-    private Quaternion MinAngle;
+    private Quaternion MaxRotation;
+    private Quaternion MinRotation;
+
+    private int scoreCurrent;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        CanvasManager.Instance.UpdateScore(SaveManager.Instace.Score);
+        CanvasManager.Instance.UpdateScore(scoreCurrent);
 
-        MaxAngle = Quaternion.Euler(0, 0, maxAngleZ);
-        MinAngle = Quaternion.Euler(0, 0, minAngleZ);
+        MaxRotation = Quaternion.Euler(0, 0, maxAngleZ);
+        MinRotation = Quaternion.Euler(0, 0, minAngleZ);
     }
 
     void Update()
@@ -40,11 +42,11 @@ public class PlayerScript : MonoBehaviour
     {
         if (rb.linearVelocity.y > 0.1f) // It´s going up
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, MaxAngle, rotationSpeedUp * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, MaxRotation, rotationSpeedUp * Time.deltaTime);
         }
         else if (rb.linearVelocity.y < -0.1f) // It´s Coming Down
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, MinAngle, rotationSpeedDown * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, MinRotation, rotationSpeedDown * Time.deltaTime);
         }
     }
 
@@ -59,8 +61,9 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Goal"))
         {
-            SaveManager.Instace.Score++;
-            CanvasManager.Instance.UpdateScore(SaveManager.Instace.Score);
+            scoreCurrent++;
+            SaveManager.Instace.CheckMaxScore(scoreCurrent);
+            CanvasManager.Instance.UpdateScore(scoreCurrent);
         }
     }
 }
