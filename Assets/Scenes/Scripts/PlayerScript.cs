@@ -62,15 +62,14 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") && !death)
         {
-            SaveManager.Instace.Deaths++;
-
-            if (!death)
-                AudioManager.Instance.PlaySoundEffect(hitSound);
+            CanvasManager.Instance.ShowPainelDeath(scoreCurrent);
+            AudioManager.Instance.PlaySoundEffect(hitSound);
 
             SaveManager.Instace.SaveGame();
             ObstacleManager.Instance.StopObstacle();
+            SaveManager.Instace.Deaths++;
 
             anim.enabled = false;
             death = true;       
