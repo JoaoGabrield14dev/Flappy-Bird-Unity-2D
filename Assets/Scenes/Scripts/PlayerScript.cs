@@ -5,6 +5,11 @@ public class PlayerScript : MonoBehaviour
 {
     [SerializeField] private float forceJump;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip scoreSound;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip hitSound;
+
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSpeedUp;
     [SerializeField] private float rotationSpeedDown;
@@ -14,14 +19,18 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float minAngleZ;
 
     private Rigidbody2D rb;
+    private Animator anim;
     private Quaternion MaxRotation;
     private Quaternion MinRotation;
 
     private int scoreCurrent;
+    private bool death;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
         CanvasManager.Instance.UpdateScore(scoreCurrent);
 
         MaxRotation = Quaternion.Euler(0, 0, maxAngleZ);
@@ -30,9 +39,10 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
+        if ((Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) && !death)
         {
             rb.linearVelocity = Vector2.up * forceJump;
+            AudioManager.Instance.PlaySoundEffect(jumpSound);
         }
 
         RotationBird();
@@ -55,13 +65,21 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             SaveManager.Instace.Deaths++;
+
+            if (!death)
+                AudioManager.Instance.PlaySoundEffect(hitSound);
+
             SaveManager.Instace.SaveGame();
-            print("Game Over");
+            ObstacleManager.Instance.StopObstacle();
+
+            anim.enabled = false;
+            death = true;       
         }
 
         if (collision.gameObject.CompareTag("Goal"))
         {
             scoreCurrent++;
+            AudioManager.Instance.PlaySoundEffect(scoreSound);
             SaveManager.Instace.CheckMaxScore(scoreCurrent);
             CanvasManager.Instance.UpdateScore(scoreCurrent);
         }

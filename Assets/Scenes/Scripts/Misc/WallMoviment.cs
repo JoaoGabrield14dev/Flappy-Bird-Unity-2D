@@ -2,12 +2,7 @@ using UnityEngine;
 
 public class WallMoviment : MonoBehaviour
 {
-    [SerializeField] private float speed;
-
-    void Start()
-    {
-        Destroy(gameObject, 6);
-    }
+    public float speed;
 
     void FixedUpdate()
     {
