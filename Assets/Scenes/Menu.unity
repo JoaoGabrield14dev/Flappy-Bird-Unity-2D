@@ -1415,7 +1415,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 268693486}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: ButtonDeleteData
+        m_MethodName: ButtonExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1820,6 +1820,7 @@ GameObject:
   - component: {fileID: 1545664201}
   - component: {fileID: 1545664200}
   - component: {fileID: 1545664203}
+  - component: {fileID: 1545664204}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1844,8 +1845,8 @@ Camera:
   m_GameObject: {fileID: 1545664199}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1945,6 +1946,18 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1545664204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545664199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e7d45852d77bd4992c4378d8bfbb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AspectRatioController
 --- !u!1 &1581952082
 GameObject:
   m_ObjectHideFlags: 0
