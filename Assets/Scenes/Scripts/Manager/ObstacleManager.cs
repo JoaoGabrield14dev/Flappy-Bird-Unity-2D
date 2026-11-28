@@ -37,6 +37,15 @@ public class ObstacleManager : MonoBehaviour
         Instantiate(obstacleObject, SpawObstaclePos(), Quaternion.identity);
     }
 
+    public void IncreaseDifficulty(int score)
+    {
+        if (score % 15 == 0)
+        {
+            cooldownSpaw -= 0.2f;
+            cooldownSpaw = Mathf.Max(cooldownSpaw, 1.4f);
+        }
+    }
+
     Vector3 SpawObstaclePos()
     {
         return new Vector3(obstacleSpaw.position.x, Random.Range(-2.5f, 2.75f), 3);

@@ -39,13 +39,20 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        if ((Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) && !death)
+        if (CheckInput() && !death)
         {
             rb.linearVelocity = Vector2.up * forceJump;
             AudioManager.Instance.PlaySoundEffect(jumpSound);
         }
 
         RotationBird();
+    }
+
+    bool CheckInput()
+    {
+        return (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) ||
+       (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) ||
+       (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame);
     }
 
     void RotationBird()
@@ -69,15 +76,15 @@ public class PlayerScript : MonoBehaviour
 
             SaveManager.Instace.SaveGame();
             ObstacleManager.Instance.StopObstacle();
-            SaveManager.Instace.Deaths++;
 
             anim.enabled = false;
             death = true;       
         }
 
-        if (collision.gameObject.CompareTag("Goal"))
+        if (collision.gameObject.CompareTag("Goal") && !death)
         {
             scoreCurrent++;
+            ObstacleManager.Instance.IncreaseDifficulty(scoreCurrent);
             AudioManager.Instance.PlaySoundEffect(scoreSound);
             SaveManager.Instace.CheckMaxScore(scoreCurrent);
             CanvasManager.Instance.UpdateScore(scoreCurrent);

@@ -678,7 +678,11 @@ MonoBehaviour:
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
-          rid: -2
+          rid: 8109792791467655287
+    - rid: 8109792791467655287
+      type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
+      data:
+        m_Cache: []
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -979,7 +983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleManager
   obstacleSpaw: {fileID: 704244643}
   obstacleObject: {fileID: 1586784990387995140, guid: 848bc3df24f506644bf7ab96c7197acf, type: 3}
-  cooldownSpaw: 2
+  cooldownSpaw: 2.2
 --- !u!4 &818491531
 Transform:
   m_ObjectHideFlags: 0
