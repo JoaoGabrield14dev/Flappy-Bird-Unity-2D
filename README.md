@@ -72,7 +72,11 @@ Feel free to explore the code, inspect the project structure, and use it as a re
 
 ## 📄 License
 
-Feel free to explore and learn from this project. If you use any part of it, consider giving credit to the original project.
+This project is licensed under the MIT License.
+
+You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of this project, provided that the original copyright notice and license are included.
+
+See the LICENSE file for more details.
 
 ---
 
