@@ -34,7 +34,6 @@ public class SaveManager : MonoBehaviour
     {
         if (score_ > score)
         {
-            print("Passou o recorde!");
             score = score_;
         }
     }
